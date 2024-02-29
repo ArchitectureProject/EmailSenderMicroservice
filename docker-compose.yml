@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  mailsendermicroservice:
+    build: .
+    environment:
+      - MAIL_PASSWORD=szul gbyq uyau nbcb
+    networks:
+      - app-network
+    ports:
+      - "8033:8033"
+
+networks:
+  app-network:
+    driver: bridge
