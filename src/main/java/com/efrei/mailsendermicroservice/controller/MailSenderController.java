@@ -1,29 +1,23 @@
 package com.efrei.mailsendermicroservice.controller;
 
-
-
 import com.efrei.mailsendermicroservice.model.MailRequest;
-import com.efrei.mailsendermicroservice.service.MailSenderService;
-import jakarta.mail.MessagingException;
+import com.efrei.mailsendermicroservice.service.MailSenderServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mail-sender/send")
 public class MailSenderController {
-    private final MailSenderService emailingService;
+    private final MailSenderServiceImpl emailingService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void sendMail(@RequestBody MailRequest request) throws MessagingException {
-        emailingService.sendMail(request);
+    public void sendMail(@RequestHeader(name = "Authorization") String bearerToken,
+                         @RequestBody MailRequest request) {
+        emailingService.sendMail(bearerToken, request);
     }
 }
