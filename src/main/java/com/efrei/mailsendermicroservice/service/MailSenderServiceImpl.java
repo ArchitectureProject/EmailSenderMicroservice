@@ -32,7 +32,7 @@ public class MailSenderServiceImpl implements MailSenderService{
     @Override
     @Async
     public void sendMail(String bearerToken, MailRequest request) {
-        jwtUtils.validateJwt(bearerToken, null);
+        jwtUtils.validateJwt(bearerToken.substring(7), null);
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
