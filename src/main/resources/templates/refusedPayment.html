@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Email Template</title>
+</head>
+<body>
+<div>
+    <p>Dear <span th:text="${name}"></span>,</p>
+    <p>Thank you for using our bowling service !</p>
+    <p>Unfortunately, your Credit Card payment of <span th:text="${amount}"></span>$ have been declined, please try again or approach our staff to pay in cash !</p>
+</div>
+</body>
+</html>

@@ -55,10 +55,10 @@ public class MailSenderServiceImpl implements MailSenderService{
         String processedString = templateEngine.process(request.templateName(), context);
         try{
             mimeMessageHelper.setText(processedString, true);
+            mailSender.send(mimeMessage);
         }
         catch (MessagingException e){
             throw new EmailSenderException("Error while sending email", e);
         }
-        mailSender.send(mimeMessage);
     }
 }
